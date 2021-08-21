@@ -1,0 +1,8 @@
+version: 8.10.0
+
+downloadUrl: https://dl.pstmn.io/download/version/${version}/win64
+downloadedFile: ${baseDir}\postman.exe
+
+cmd.install:
+    - copy ${downloadUrl} ${downloadedFile}
+    - levainShell ${downloadedFile}
