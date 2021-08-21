@@ -1,0 +1,11 @@
+version: 2020.3.2
+
+dependencies:
+
+downloadUrl:  https://download.jetbrains.com/idea
+
+cmd.install:
+  - extract ${downloadUrl}/ideaIC-${version}.win.zip ${baseDir}
+
+cmd.env:
+  - addPath ${baseDir}/bin
