@@ -1,0 +1,19 @@
+version: 2.33.0
+versionTag: 2.33.0.windows.1
+
+downloadUrl:  https://github.com/git-for-windows/git/releases/download/
+
+gitHome: ${baseDir}
+
+cmd.install:
+    # download and extract
+    - extract ${downloadUrl}/v${versionTag}/PortableGit-${version}-64-bit.7z.exe ${gitHome}
+
+    # make visible
+    - setEnv --permanent GIT_HOME ${gitHome}
+    - addPath --permanent ${gitHome}/bin
+
+cmd.env:
+    # make visible
+    - setEnv GIT_HOME ${gitHome}
+    - addPath ${gitHome}/bin
