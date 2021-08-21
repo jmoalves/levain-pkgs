@@ -1,0 +1,11 @@
+version: 9.0.52
+
+dependencies:
+
+downloadUrl: https://downloads.apache.org/tomcat/tomcat-9/v${version}/bin/apache-tomcat-${version}-windows-x64.zip
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}/bin
