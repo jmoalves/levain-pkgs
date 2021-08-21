@@ -1,0 +1,15 @@
+version: 3.5.4
+
+dependencies:
+
+downloadUrl: https://downloads.apache.org/maven/maven-3
+
+cmd.install:
+    - extract --strip ${downloadUrl}/${version}/binaries/apache-maven-${version}-bin.zip ${baseDir}
+    - setEnv --permanent M2_HOME ${baseDir}
+    - addPath --permanent ${baseDir}/bin
+
+cmd.env:
+    - setVar mavenHome ${baseDir}
+    - setEnv M2_HOME ${baseDir}
+    - addPath ${baseDir}/bin
