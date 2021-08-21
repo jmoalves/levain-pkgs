@@ -1,0 +1,8 @@
+version: 2021.2.2
+
+dependencies:
+
+downloadUrl: https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.exe
+
+cmd.install:
+  - copy ${downloadUrl} ${baseDir}
