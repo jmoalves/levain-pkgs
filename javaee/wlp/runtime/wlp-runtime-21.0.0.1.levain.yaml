@@ -1,0 +1,15 @@
+version: 1.0.0
+
+wlp-jee: javaee8
+wlp-version: 21.0.0.1
+
+dependencies:
+
+downloadUrl: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp
+
+cmd.install:
+    - extract --strip ${downloadUrl}/${wlp-version}/wlp-${wlp-jee}-${wlp-version}.zip ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}/bin
+    - setEnv WLP_HOME ${baseDir}
