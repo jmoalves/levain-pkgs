@@ -1,0 +1,8 @@
+version: 0.0.1
+
+levain.pkg.skipInstallDir: true
+
+dependencies:
+
+# FIXME: How do we delay the mirror definition?
+downloadUrl: https://eclipse.c3sl.ufpr.br/technology/epp/downloads/release

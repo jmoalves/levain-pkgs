@@ -1,0 +1,12 @@
+version: 2020-09
+
+dependencies:
+  - eclise-mirror
+
+downloadUrl: ${pkg.eclise-mirror.downloadUrl}
+
+cmd.install:
+  - extract --strip ${downloadUrl}/${version}/R/eclipse-jee-${version}-R-win32-x86_64.zip ${baseDir}
+
+cmd.env:
+  - addPath ${baseDir}/bin
