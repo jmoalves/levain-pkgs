@@ -1,0 +1,12 @@
+version: 1.13.1
+
+dependencies:
+
+downloadUrl: https://github.com/denoland/deno/releases/download
+
+cmd.install:
+    - extract ${downloadUrl}/v${version}/deno-x86_64-pc-windows-msvc.zip ${baseDir}
+
+cmd.env:
+    - setEnv DENO_DIR ${baseDir}
+    - addPath --permanent ${baseDir}
