@@ -1,0 +1,8 @@
+version: 14.3.0
+
+dependencies:
+
+downloadUrl: https://www.umlet.com/download/umlet_14_3/umlet-standalone-14.3.0.zip
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
