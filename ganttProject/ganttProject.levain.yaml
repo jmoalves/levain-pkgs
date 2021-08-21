@@ -1,0 +1,8 @@
+version: 3.1.3100
+
+dependencies:
+
+downloadUrl: https://dl.ganttproject.biz/ganttproject-${version}/ganttproject-${version}.zip
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
