@@ -1,0 +1,15 @@
+version: 15.0.2
+
+dependencies:
+
+downloadUrl: https://download.java.net/java/GA/jdk${version}/0d1cfde4252546c6931946de8db48ee2/7/GPL/openjdk-${version}_windows-x64_bin.zip
+
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+    - setEnv --permanent JAVA15_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}

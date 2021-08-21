@@ -1,0 +1,15 @@
+version: 14.0.0
+
+dependencies:
+
+downloadUrl: https://download.java.net/openjdk/jdk14/ri/openjdk-14+36_windows-x64_bin.zip
+
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+    - setEnv --permanent JAVA14_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}

@@ -1,0 +1,15 @@
+version: 11.0.0
+
+dependencies:
+
+downloadUrl: https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_windows-x64_bin.zip
+
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+    - setEnv --permanent JAVA11_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}

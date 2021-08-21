@@ -1,0 +1,15 @@
+version: 13.0.0
+
+dependencies:
+
+downloadUrl: https://download.java.net/openjdk/jdk13/ri/openjdk-13+33_windows-x64_bin.zip
+
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+    - setEnv --permanent JAVA13_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}

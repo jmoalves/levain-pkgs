@@ -1,0 +1,15 @@
+version: 12.0.0
+
+dependencies:
+
+downloadUrl: https://download.java.net/openjdk/jdk12/ri/openjdk-12+32_windows-x64_bin.zip
+
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl} ${baseDir}
+    - setEnv --permanent JAVA12_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}
