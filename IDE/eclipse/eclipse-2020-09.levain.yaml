@@ -1,7 +1,7 @@
 version: 2020-09
 
 dependencies:
-  - eclise-mirror
+  - eclipse-mirror
 
 downloadUrl: ${pkg.eclise-mirror.downloadUrl}
 

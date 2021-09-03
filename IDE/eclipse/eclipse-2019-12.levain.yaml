@@ -1,7 +1,7 @@
 version: 2019-12
 
 dependencies:
-  - eclise-mirror
+  - eclipse-mirror
 
 downloadUrl: ${pkg.eclise-mirror.downloadUrl}
 
