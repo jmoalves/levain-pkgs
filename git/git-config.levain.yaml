@@ -1,0 +1,14 @@
+version: 0.0.2
+
+levain.pkg.skipInstallDir: true
+
+dependencies:
+  - git-bin
+
+cmd.install:
+  # - levainShell git config --global fetch.prune true
+  - levainShell git config --global diff.colorMoved zebra
+
+  # user info
+  - levainShell git config --global user.name ${levain.fullname}
+  - levainShell git config --global user.email ${levain.email}
