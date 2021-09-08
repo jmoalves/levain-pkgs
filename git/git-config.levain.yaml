@@ -3,7 +3,7 @@ version: 0.0.2
 levain.pkg.skipInstallDir: true
 
 dependencies:
-  - git-bin
+  - git
 
 cmd.install:
   # - levainShell git config --global fetch.prune true
