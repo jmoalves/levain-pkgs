@@ -1,0 +1,11 @@
+version: 4.0.0
+
+dependencies:
+
+downloadUrl: https://github.com/ecovaci/winfoom/releases/download
+
+cmd.install:
+    - extract ${downloadUrl}/v${version}/winfoom-windows.zip ${baseDir}
+
+cmd.env:
+    - addPath --permanent ${baseDir}
