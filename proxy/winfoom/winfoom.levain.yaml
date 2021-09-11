@@ -1,6 +1,7 @@
 version: 4.0.0
 
 dependencies:
+  - openjdk-16
 
 downloadUrl: https://github.com/ecovaci/winfoom/releases/download
 
