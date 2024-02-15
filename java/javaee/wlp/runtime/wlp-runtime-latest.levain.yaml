@@ -1,0 +1,4 @@
+version: 1.0.0
+
+dependencies:
+    - wlp-runtime-24.0.0.1
