@@ -31,20 +31,34 @@ jobs:
               env:
                 GITHUB_WORKSPACE: ${{ github.workspace }}
 
-            # # FOR TEST
-            - name: FAIL
-              run: exit 1
+            # # # FOR TEST
+            # - name: FAIL
+            #   run: exit 1
 
             ##############################################################
             ### Commit and push
             ##############################################################
             - name: Commit and push
               run: |
-                # Git config commit user
-                git config --local user.email "action@github.com"
-                git config --local user.name "GitHub Action"
-                git config pull.rebase true
+                cd $GITHUB_WORKSPACE
 
-                bash $GITHUB_WORKSPACE/githubScripts/push-release.sh $LEVAIN_VERSION
+                if ! git status; then 
+                    echo === CHANGED
+
+                    # Git config commit user
+                    git config --local user.email "action@github.com"
+                    git config --local user.name "GitHub Action"
+                    git config pull.rebase true
+
+                    git add .
+
+                    msg=$( git status )
+                    echo $msg
+
+                    git commit -m "$msg"
+                    git push
+                fi
+
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GITHUB_WORKSPACE: ${{ github.workspace }}
