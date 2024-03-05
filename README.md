@@ -1,2 +1,2 @@
 # levain-pkgs
-Repository of levain packages
+Repository of [levain](https://github.com/jmoalves/levain) packages
