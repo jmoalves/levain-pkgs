@@ -27,7 +27,6 @@ jobs:
                     bash $file
                 done
 
-                git status
               env:
                 GITHUB_WORKSPACE: ${{ github.workspace }}
 
