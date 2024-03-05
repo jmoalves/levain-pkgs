@@ -21,3 +21,19 @@ for version in $( \
         cat ${template} | sed "s/x.x.x.x/${version}/g" > ${filename}
     fi
 done
+
+### Update latest
+latest=$( \
+    find -name 'wlp-runtime-*.levain.yaml' \
+        | grep -v latest \
+        | sort -r \
+        | head -n 1 \
+        | sed 's/.*wlp-runtime-\([0-9.]\+\).levain.yaml.*/\1/g'
+)
+
+cat <<EOF > ${scriptPath}/wlp-runtime-latest.levain.yaml
+version: $latest
+
+dependencies:
+    - wlp-runtime-$latest
+EOF
