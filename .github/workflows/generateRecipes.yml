@@ -43,10 +43,10 @@ jobs:
 
                 git add .
 
-                msg=$( git status --porcelain )
-                echo $msg
+                changed=$( git status --porcelain )
+                echo $changed
 
-                if [ -n "$msg" ]; then
+                if [ -n "$changed" ]; then
                     echo === CHANGED
 
                     # Git config commit user
@@ -54,7 +54,8 @@ jobs:
                     git config --local user.name "GitHub Action"
                     git config pull.rebase true
 
-                    git commit -m "$msg"
+                    dtMsg=$( date '+%FT%T' )
+                    git commit -m "Recipe generation ${dtMsg}"
                     git push
                 fi
 
