@@ -20,7 +20,7 @@ jobs:
 
             - name: Generate recipes
               run: |
-                for file in $( find $GITHUB_WORKSPACE -name generateMissingRecipes.sh ); do 
+                for file in $( find $GITHUB_WORKSPACE -name generateRecipes.sh ); do 
                     echo
                     echo ==========================
                     echo === $( date '+%Y%m%d-%H%M%S' ) - $file
