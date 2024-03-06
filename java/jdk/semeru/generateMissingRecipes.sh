@@ -86,7 +86,7 @@ EOF
 }
 
 ####################################################
-### MAIN - Script principal (o código começa aqui)
+### MAIN
 ###
 
 javaGithub -v 21
