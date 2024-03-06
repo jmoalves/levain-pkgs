@@ -1,0 +1,14 @@
+version: 21.0.2.0
+
+dependencies:
+
+downloadUrl: https://github.com/ibmruntimes/semeru21-binaries/releases/download
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl}/jdk-21.0.2%2B13_openj9-0.43.0/ibm-semeru-open-jdk_x64_windows_21.0.2_13_openj9-0.43.0.zip ${baseDir}
+    - setEnv --permanent JAVA21_HOME ${javaHome}
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}
