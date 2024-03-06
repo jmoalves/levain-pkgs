@@ -41,18 +41,18 @@ jobs:
               run: |
                 cd $GITHUB_WORKSPACE
 
-                if ! git status; then 
+                git add .
+
+                msg=$( git status --porcelain )
+                echo $msg
+
+                if [ -n "$msg" ]; then
                     echo === CHANGED
 
                     # Git config commit user
                     git config --local user.email "action@github.com"
                     git config --local user.name "GitHub Action"
                     git config pull.rebase true
-
-                    git add .
-
-                    msg=$( git status )
-                    echo $msg
 
                     git commit -m "$msg"
                     git push
