@@ -1,0 +1,14 @@
+version: 1.0.0
+
+liberty-version: 22.0.0.12
+
+dependencies:
+
+downloadUrl: https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/release
+
+cmd.install:
+    - extract --strip ${downloadUrl}/${liberty-version}/openliberty-kernel-${liberty-version}.zip ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}/bin
+    - setEnv WLP_HOME ${baseDir}
