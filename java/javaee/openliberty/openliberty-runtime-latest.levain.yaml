@@ -1,0 +1,4 @@
+version: 24.0.0.5
+
+dependencies:
+    - openliberty-24.0.0.5
