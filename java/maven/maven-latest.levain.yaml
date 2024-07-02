@@ -1,4 +1,6 @@
 version: 3.9
 
+levain.pkg.skipInstallDir: true
+
 dependencies:
     - maven-3.9
