@@ -14,6 +14,7 @@ generateMavenRecipes() {
     local simpleVersion=$(echo $version | sed 's/\([0-9]\+\.[0-9]\+\)\..*/\1/g')
     local filename=${scriptPath}/maven-${simpleVersion}.levain.yaml
 
+    echo "=== Maven ${version} at ${filename}"
     # Check if the recipe file already exists
     # if [ ! -e ${filename} ]; then
         # echo "=== MISSING Maven ${simpleVersion} at ${filename}"
@@ -25,13 +26,16 @@ generateMavenRecipes() {
 }
 
 # Fetch Maven versions from the official Maven repository
-for version in $(
-        curl -s https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/ \
-            | grep -oP 'href="\K[\d.]+(?=/")' \
-            | grep '^3\.' \
-            | sort -r \
-            ) ; do
-    generateMavenRecipes $version
+versions=$(curl -s https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/ \
+    | grep -oP 'href="\K[\d.]+(?=/")' \
+    | grep '^3\.' \
+    | sort
+)
+
+# get the latest version for each major.minor and generate the recipe
+for version in $(echo "$versions" | sed 's/\([0-9]\+\.[0-9]\+\)\..*/\1/g' | sort -u) ; do
+    latest=$(echo "$versions" | grep "^$version\." | sort -r | head -n 1)
+    generateMavenRecipes $latest
 done
 
 ### Update latest
@@ -43,6 +47,8 @@ latest=$(find -name 'maven-*.levain.yaml' \
 )
 cat <<EOF > ${scriptPath}/maven-latest.levain.yaml
 version: $latest
+
+levain.pkg.skipInstallDir: true
 
 dependencies:
     - maven-$latest
