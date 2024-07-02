@@ -30,6 +30,8 @@ latest=$( \
 cat <<EOF > ${scriptPath}/openliberty-runtime-latest.levain.yaml
 version: $latest
 
+levain.pkg.skipInstallDir: true
+
 dependencies:
     - openliberty-runtime-$latest
 EOF
