@@ -34,6 +34,8 @@ latest=$( \
 cat <<EOF > ${scriptPath}/wlp-runtime-latest.levain.yaml
 version: $latest
 
+levain.pkg.skipInstallDir: true
+
 dependencies:
     - wlp-runtime-$latest
 EOF
