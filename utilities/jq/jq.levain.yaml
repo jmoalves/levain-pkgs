@@ -1,0 +1,11 @@
+version: 1.7.1
+
+dependencies:
+
+downloadUrl: https://github.com/stedolan/jq/releases/download/jq-1.7.1
+
+cmd.install:
+    - extract ${downloadUrl}/jq-win64.exe ${baseDir}/jq.exe
+
+cmd.env:
+    - addPath ${baseDir}
