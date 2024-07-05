@@ -8,6 +8,7 @@ javaHome: ${baseDir}
 cmd.install:
     - extract --strip ${downloadUrl}/jdk-21.0.1%2B12_openj9-0.42.0/ibm-semeru-open-jdk_x64_windows_21.0.1_12_openj9-0.42.0.zip ${baseDir}
     - setEnv --permanent JAVA21_HOME ${javaHome}
+    - addPath --permanent ${javaHome}/bin
 
 cmd.env:
     - addPath ${javaHome}/bin

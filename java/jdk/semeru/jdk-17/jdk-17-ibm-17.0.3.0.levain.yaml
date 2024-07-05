@@ -8,6 +8,7 @@ javaHome: ${baseDir}
 cmd.install:
     - extract --strip ${downloadUrl}/jdk-17.0.3%2B7_openj9-0.32.0/ibm-semeru-open-jdk_x64_windows_17.0.3_7_openj9-0.32.0.zip ${baseDir}
     - setEnv --permanent JAVA17_HOME ${javaHome}
+    - addPath --permanent ${javaHome}/bin
 
 cmd.env:
     - addPath ${javaHome}/bin
