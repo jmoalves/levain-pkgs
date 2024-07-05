@@ -19,7 +19,7 @@ dependencies:
 downloadUrl: https://nodejs.org/dist/v${version}/node-v${version}-win-x64.zip
 
 cmd.install:
-    - extract \${downloadUrl} \${baseDir}
+    - extract --strip \${downloadUrl} \${baseDir}
     - setEnv --permanent NODE_HOME \${baseDir}
 
 cmd.env:
