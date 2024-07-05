@@ -53,7 +53,7 @@ javaGithub() {
     local jdkType=jdk
     local binType=x64_windows
     local extension=zip
-    local grepExpression="${grepExpression}${jdkType}_${binType}.*[0-9]\.${extension}$"
+    local grepExpression=".*/download/jdk.*${jdkType}_${binType}.*[0-9]\.${extension}$"
     local certifiedJDK=
     for url in $( \
         curl -kLs \
@@ -62,7 +62,14 @@ javaGithub() {
         | jq -r '.[]|select(.prerelease == false)| .assets[].browser_download_url ' \
         | grep "${grepExpression}"
     ); do
-        version=($( echo ${url} | sed 's@^.*/download/jdk-\([^%]\+\).*$@\1@g' ))
+        # echo
+        # echo URL: ${url}
+        if [ $jdkMajor = 8 ]; then
+            version='8.0.'$( echo ${url} | sed 's@^.*/download/jdk8u\([0-9]\+\).*.\.\([0-9]\+\)/.*$@\1.\2@g' )
+        else
+            version=($( echo ${url} | sed 's@^.*/download/jdk-\([^%]\+\).*$@\1@g' ))
+        fi
+
         my_arr=($( echo ${version} | tr "." "\n" ))
         if [ "${my_arr[3]}" == "" ]; then
             adjustedVersion=${my_arr[0]}.${my_arr[1]}.${my_arr[2]}.0
@@ -71,11 +78,12 @@ javaGithub() {
         fi
 
         filename=${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-${adjustedVersion}.levain.yaml
-        # if [ ! -e $filename ]; then
+        if [ ! -e $filename ]; then
             echo === MISSING - JDK version - ${adjustedVersion} at ${filename}
             zipPath=($(echo ${url} | sed 's@^.*/download/@@g'))
+            # echo ZIP: ${zipPath}
             generateJdkRecipe ${filename} ${adjustedVersion} ${zipPath}
-        # fi
+        fi
     done
 
     ### Update latest
@@ -95,6 +103,7 @@ javaGithub() {
 ### MAIN
 ###
 
-javaGithub -v 21
-javaGithub -v 17
-javaGithub -v 11
+javaGithub -v 21 # LTS
+javaGithub -v 17 # LTS
+javaGithub -v 11 # LTS
+javaGithub -v 8  # LTS
