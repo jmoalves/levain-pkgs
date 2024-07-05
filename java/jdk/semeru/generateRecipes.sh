@@ -64,6 +64,7 @@ javaHome: \${baseDir}
 cmd.install:
     - extract --strip \${downloadUrl}/${zipPath} \${baseDir}
     - setEnv --permanent JAVA${jdkMajor}_HOME \${javaHome}
+    - addPath --permanent \${javaHome}/bin
 
 cmd.env:
     - addPath \${javaHome}/bin
