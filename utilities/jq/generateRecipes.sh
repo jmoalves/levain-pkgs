@@ -16,7 +16,8 @@ dependencies:
 downloadUrl: https://github.com/stedolan/jq/releases/download/jq-${version}
 
 cmd.install:
-    - extract \${downloadUrl}/jq-win64.exe \${baseDir}/jq.exe
+    - copy \${downloadUrl}/jq-win64.exe \${baseDir}/jq.exe
+    - addPath --permanent \${baseDir}
 
 cmd.env:
     - addPath \${baseDir}
