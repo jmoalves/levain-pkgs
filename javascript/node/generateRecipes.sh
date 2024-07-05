@@ -44,7 +44,7 @@ for major in $(echo "$versions" | cut -d. -f1 | uniq); do
 done
 
 ### Update latest
-latest=$(echo "$versions" | head -n 1)
+latest=$(echo "$versions" | cut -d. -f1 | uniq | head -n 1)
 cat <<EOF > ${scriptPath}/node-runtime-latest.levain.yaml
 version: $latest
 
