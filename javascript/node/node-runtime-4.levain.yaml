@@ -9,5 +9,5 @@ cmd.install:
     - setEnv --permanent NODE_HOME ${baseDir}
 
 cmd.env:
-    - addPath ${baseDir}/bin
+    - addPath --permanent ${baseDir}
     - setEnv NODE_VERSION 4.9.1
