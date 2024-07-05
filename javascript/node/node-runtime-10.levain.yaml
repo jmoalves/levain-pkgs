@@ -5,7 +5,7 @@ dependencies:
 downloadUrl: https://nodejs.org/dist/v10.24.1/node-v10.24.1-win-x64.zip
 
 cmd.install:
-    - extract ${downloadUrl} ${baseDir}
+    - extract --strip ${downloadUrl} ${baseDir}
     - setEnv --permanent NODE_HOME ${baseDir}
 
 cmd.env:
