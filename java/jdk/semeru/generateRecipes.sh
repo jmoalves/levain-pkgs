@@ -6,6 +6,31 @@ scriptPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd && cd -
 ### Functions
 ####################################################
 
+generateJdkRecipe() {
+    local filename=$1
+    local adjustedVersion=$2
+    local zipPath=$3
+
+    mkdir -p $( dirname ${filename})
+    cat <<-EOF > ${filename}
+version: ${adjustedVersion}
+
+dependencies:
+
+downloadUrl: https://github.com/ibmruntimes/semeru${jdkMajor}-binaries/releases/download
+javaHome: \${baseDir}
+
+cmd.install:
+    - extract --strip \${downloadUrl}/${zipPath} \${baseDir}
+    - setEnv --permanent JAVA${jdkMajor}_HOME \${javaHome}
+    - addPath --permanent \${javaHome}/bin
+
+cmd.env:
+    - addPath \${javaHome}/bin
+    - setEnv JAVA_HOME \${javaHome}
+EOF
+}
+
 javaGithub() {
     # https://stackoverflow.com/questions/16654607/using-getopts-inside-a-bash-function
     local OPTIND OPTARG o
@@ -46,31 +71,11 @@ javaGithub() {
         fi
 
         filename=${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-${adjustedVersion}.levain.yaml
-        if [ ! -e $filename ]; then
-            zipPath=($(echo ${url} | sed 's@^.*/download/@@g'))
+        # if [ ! -e $filename ]; then
             echo === MISSING - JDK version - ${adjustedVersion} at ${filename}
-            # echo URL.: ${url}
-            # echo ZIP.: ${zipPath}
-            # echo file: ${filename} - ${template}
-            mkdir -p $( dirname ${filename})
-            cat<<-EOF > ${filename}
-version: ${adjustedVersion}
-
-dependencies:
-
-downloadUrl: https://github.com/ibmruntimes/semeru${jdkMajor}-binaries/releases/download
-javaHome: \${baseDir}
-
-cmd.install:
-    - extract --strip \${downloadUrl}/${zipPath} \${baseDir}
-    - setEnv --permanent JAVA${jdkMajor}_HOME \${javaHome}
-    - addPath --permanent \${javaHome}/bin
-
-cmd.env:
-    - addPath \${javaHome}/bin
-    - setEnv JAVA_HOME \${javaHome}
-EOF
-        fi
+            zipPath=($(echo ${url} | sed 's@^.*/download/@@g'))
+            generateJdkRecipe ${filename} ${adjustedVersion} ${zipPath}
+        # fi
     done
 
     ### Update latest
