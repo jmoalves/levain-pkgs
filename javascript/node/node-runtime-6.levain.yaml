@@ -7,7 +7,9 @@ downloadUrl: https://nodejs.org/dist/v6.17.1/node-v6.17.1-win-x64.zip
 cmd.install:
     - extract --strip ${downloadUrl} ${baseDir}
     - setEnv --permanent NODE_HOME ${baseDir}
+    - addPath --permanent ${baseDir}
 
 cmd.env:
-    - addPath --permanent ${baseDir}
+    - addPath ${baseDir}
+    - setEnv NODE_HOME ${baseDir}
     - setEnv NODE_VERSION 6.17.1

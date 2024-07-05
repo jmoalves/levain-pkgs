@@ -7,7 +7,9 @@ downloadUrl: https://nodejs.org/dist/v18.20.3/node-v18.20.3-win-x64.zip
 cmd.install:
     - extract --strip ${downloadUrl} ${baseDir}
     - setEnv --permanent NODE_HOME ${baseDir}
+    - addPath --permanent ${baseDir}
 
 cmd.env:
-    - addPath --permanent ${baseDir}
+    - addPath ${baseDir}
+    - setEnv NODE_HOME ${baseDir}
     - setEnv NODE_VERSION 18.20.3
