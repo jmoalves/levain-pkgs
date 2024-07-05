@@ -16,7 +16,7 @@ version: ${version}
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v${version}/node-v${version}-linux-x64.tar.xz
+downloadUrl: https://nodejs.org/dist/v${version}/node-v${version}-win-x64.zip
 
 cmd.install:
     - extract \${downloadUrl} \${baseDir}
