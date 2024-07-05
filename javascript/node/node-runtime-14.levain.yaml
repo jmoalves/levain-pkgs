@@ -2,7 +2,7 @@ version: 14.21.3
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v14.21.3/node-v14.21.3-linux-x64.tar.xz
+downloadUrl: https://nodejs.org/dist/v14.21.3/node-v14.21.3-win-x64.zip
 
 cmd.install:
     - extract ${downloadUrl} ${baseDir}

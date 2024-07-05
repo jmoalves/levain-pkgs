@@ -2,7 +2,7 @@ version: 12.22.12
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v12.22.12/node-v12.22.12-linux-x64.tar.xz
+downloadUrl: https://nodejs.org/dist/v12.22.12/node-v12.22.12-win-x64.zip
 
 cmd.install:
     - extract ${downloadUrl} ${baseDir}

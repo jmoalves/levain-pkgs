@@ -2,7 +2,7 @@ version: 18.20.3
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v18.20.3/node-v18.20.3-linux-x64.tar.xz
+downloadUrl: https://nodejs.org/dist/v18.20.3/node-v18.20.3-win-x64.zip
 
 cmd.install:
     - extract ${downloadUrl} ${baseDir}

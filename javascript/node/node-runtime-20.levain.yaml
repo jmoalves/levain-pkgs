@@ -2,7 +2,7 @@ version: 20.15.0
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v20.15.0/node-v20.15.0-linux-x64.tar.xz
+downloadUrl: https://nodejs.org/dist/v20.15.0/node-v20.15.0-win-x64.zip
 
 cmd.install:
     - extract ${downloadUrl} ${baseDir}
