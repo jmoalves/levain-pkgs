@@ -21,9 +21,11 @@ downloadUrl: https://nodejs.org/dist/v${version}/node-v${version}-win-x64.zip
 cmd.install:
     - extract --strip \${downloadUrl} \${baseDir}
     - setEnv --permanent NODE_HOME \${baseDir}
+    - addPath --permanent \${baseDir}
 
 cmd.env:
-    - addPath --permanent \${baseDir}
+    - addPath \${baseDir}
+    - setEnv NODE_HOME \${baseDir}
     - setEnv NODE_VERSION ${version}
 EOF
 }

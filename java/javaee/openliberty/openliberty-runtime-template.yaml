@@ -8,6 +8,7 @@ downloadUrl: https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/ru
 
 cmd.install:
     - extract --strip ${downloadUrl}/${liberty-version}/openliberty-kernel-${liberty-version}.zip ${baseDir}
+    - addPath --permanent ${baseDir}/bin
 
 cmd.env:
     - addPath ${baseDir}/bin

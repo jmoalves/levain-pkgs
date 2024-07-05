@@ -8,6 +8,7 @@ downloadUrl: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasd
 
 cmd.install:
     - extract --strip ${downloadUrl}/${wlp-version}/wlp-kernel-${wlp-version}.zip ${baseDir}
+    - addPath --permanent ${baseDir}/bin
 
 cmd.env:
     - addPath ${baseDir}/bin

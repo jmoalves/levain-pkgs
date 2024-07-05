@@ -16,10 +16,11 @@ downloadUrl: https://github.com/denoland/deno/releases/download
 
 cmd.install:
     - extract \${downloadUrl}/v\${version}/deno-x86_64-pc-windows-msvc.zip \${baseDir}
+    - addPath --permanent \${baseDir}
 
 cmd.env:
     - setEnv DENO_DIR \${baseDir}
-    - addPath --permanent \${baseDir}
+    - addPath \${baseDir}
 EOF
 }
 
