@@ -1,0 +1,13 @@
+version: 16.20.2
+
+dependencies:
+
+downloadUrl: https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz
+
+cmd.install:
+    - extract ${downloadUrl} ${baseDir}
+    - setEnv --permanent NODE_HOME ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}/bin
+    - setEnv NODE_VERSION 16.20.2
