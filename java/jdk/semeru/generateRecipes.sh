@@ -90,9 +90,15 @@ javaGithub() {
     latest=$( \
         find ${scriptPath}/jdk-${jdkMajor} -name 'jdk-*.levain.yaml' \
             | grep -v latest \
+            | sed 's/\.\([0-9]\)\./.0\1\./g' \
+            | sed 's/\.\([0-9]\)\./.0\1\./g' \
+            | sed 's/\.\([0-9]\{2\}\)\./.0\1\./g' \
+            | sed 's/\.\([0-9]\{2\}\)\./.0\1\./g' \
+            | sed 's/.*jdk-.*-\([0-9.]\+\).levain.yaml.*/\1/g' \
             | sort -r \
-            | head -n 1 \
-            | sed 's/.*jdk-.*-\([0-9.]\+\).levain.yaml.*/\1/g'
+            | sed 's/\.0\+\([1-9]\+\)/.\1/g' \
+            | sed 's/\.0\+0/.0/g' \
+            | head -n 1
     )
 
     cp ${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-${latest}.levain.yaml ${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-latest.levain.yaml
