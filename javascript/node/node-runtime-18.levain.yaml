@@ -1,8 +1,8 @@
-version: 18.20.3
+version: 18.20.4
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v18.20.3/node-v18.20.3-win-x64.zip
+downloadUrl: https://nodejs.org/dist/v18.20.4/node-v18.20.4-win-x64.zip
 
 cmd.install:
     - extract --strip ${downloadUrl} ${baseDir}
@@ -12,4 +12,4 @@ cmd.install:
 cmd.env:
     - addPath ${baseDir}
     - setEnv NODE_HOME ${baseDir}
-    - setEnv NODE_VERSION 18.20.3
+    - setEnv NODE_VERSION 18.20.4
