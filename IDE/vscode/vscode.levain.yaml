@@ -1,0 +1,12 @@
+version: 1.91.1
+
+dependencies:
+
+downloadUrl: https://update.code.visualstudio.com/${version}/win32-x64-archive/stable
+
+cmd.install:
+    - extract --type zip ${downloadUrl} ${baseDir}
+    - addPath --permanent ${baseDir}/bin
+
+cmd.env:
+    - addPath ${baseDir}/bin
