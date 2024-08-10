@@ -1,4 +1,4 @@
-version: 11.0.23.0
+version: 11.0.24.0
 
 dependencies:
 
@@ -6,7 +6,7 @@ downloadUrl: https://github.com/ibmruntimes/semeru11-binaries/releases/download
 javaHome: ${baseDir}
 
 cmd.install:
-    - extract --strip ${downloadUrl}/jdk-11.0.23%2B9_openj9-0.44.0/ibm-semeru-open-jdk_x64_windows_11.0.23_9_openj9-0.44.0.zip ${baseDir}
+    - extract --strip ${downloadUrl}/jdk-11.0.24%2B8_openj9-0.46.0/ibm-semeru-open-jdk_x64_windows_11.0.24_8_openj9-0.46.0.zip ${baseDir}
     - setEnv --permanent JAVA11_HOME ${javaHome}
     - addPath --permanent ${javaHome}/bin
 
