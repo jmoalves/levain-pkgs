@@ -1,8 +1,8 @@
-version: 20.16.0
+version: 20.17.0
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v20.16.0/node-v20.16.0-win-x64.zip
+downloadUrl: https://nodejs.org/dist/v20.17.0/node-v20.17.0-win-x64.zip
 
 cmd.install:
     - extract --strip ${downloadUrl} ${baseDir}
@@ -12,4 +12,4 @@ cmd.install:
 cmd.env:
     - addPath ${baseDir}
     - setEnv NODE_HOME ${baseDir}
-    - setEnv NODE_VERSION 20.16.0
+    - setEnv NODE_VERSION 20.17.0
