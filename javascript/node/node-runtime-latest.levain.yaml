@@ -1,6 +1,6 @@
-version: 20
+version: 22
 
 levain.pkg.skipInstallDir: true
 
 dependencies:
-    - node-runtime-20
+    - node-runtime-22
