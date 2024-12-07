@@ -1,8 +1,8 @@
-version: 22.11.0
+version: 22.12.0
 
 dependencies:
 
-downloadUrl: https://nodejs.org/dist/v22.11.0/node-v22.11.0-win-x64.zip
+downloadUrl: https://nodejs.org/dist/v22.12.0/node-v22.12.0-win-x64.zip
 
 cmd.install:
     - extract --strip ${downloadUrl} ${baseDir}
@@ -12,4 +12,4 @@ cmd.install:
 cmd.env:
     - addPath ${baseDir}
     - setEnv NODE_HOME ${baseDir}
-    - setEnv NODE_VERSION 22.11.0
+    - setEnv NODE_VERSION 22.12.0
