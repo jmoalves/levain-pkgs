@@ -18,6 +18,7 @@ for version in $( \
     filename=${scriptPath}/${year}/wlp-runtime-${version}.levain.yaml
     if [ ! -e ${filename} ]; then
         echo === MISSING ${version} at ${filename}
+        mkdir -p $( dirname ${filename} )
         cat ${template} | sed "s/x.x.x.x/${version}/g" > ${filename}
     fi
 done
