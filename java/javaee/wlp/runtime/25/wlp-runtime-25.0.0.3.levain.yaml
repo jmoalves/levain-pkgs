@@ -1,0 +1,15 @@
+version: 1.0.0
+
+wlp-version: 25.0.0.3
+
+dependencies:
+
+downloadUrl: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp
+
+cmd.install:
+    - extract --strip ${downloadUrl}/${wlp-version}/wlp-kernel-${wlp-version}.zip ${baseDir}
+    - addPath --permanent ${baseDir}/bin
+
+cmd.env:
+    - addPath ${baseDir}/bin
+    - setEnv WLP_HOME ${baseDir}
