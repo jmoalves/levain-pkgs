@@ -71,7 +71,11 @@ javaGithub() {
         fi
 
         my_arr=($( echo ${version} | tr "." "\n" ))
-        if [ "${my_arr[3]}" == "" ]; then
+        if [ "${my_arr[1]}" == "" ]; then
+            adjustedVersion=${my_arr[0]}.0.0.0
+        elif [ "${my_arr[2]}" == "" ]; then
+            adjustedVersion=${my_arr[0]}.${my_arr[1]}.0.0
+        elif [ "${my_arr[3]}" == "" ]; then
             adjustedVersion=${my_arr[0]}.${my_arr[1]}.${my_arr[2]}.0
         else
             adjustedVersion=$version
@@ -109,6 +113,7 @@ javaGithub() {
 ### MAIN
 ###
 
+javaGithub -v 25 # LTS
 javaGithub -v 21 # LTS
 javaGithub -v 17 # LTS
 javaGithub -v 11 # LTS
