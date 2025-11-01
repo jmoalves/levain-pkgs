@@ -1,0 +1,15 @@
+version: 25.0.0.0
+
+dependencies:
+
+downloadUrl: https://github.com/ibmruntimes/semeru25-binaries/releases/download
+javaHome: ${baseDir}
+
+cmd.install:
+    - extract --strip ${downloadUrl}/jdk-25%2B36_openj9-0.55.0/ibm-semeru-open-jdk_x64_windows_25_36_openj9-0.55.0.zip ${baseDir}
+    - setEnv --permanent JAVA25_HOME ${javaHome}
+    - addPath --permanent ${javaHome}/bin
+
+cmd.env:
+    - addPath ${javaHome}/bin
+    - setEnv JAVA_HOME ${javaHome}

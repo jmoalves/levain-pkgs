@@ -1,4 +1,4 @@
-version: 8.0.462.0
+version: 8.0.472.0
 
 dependencies:
 
@@ -6,7 +6,7 @@ downloadUrl: https://github.com/ibmruntimes/semeru8-binaries/releases/download
 javaHome: ${baseDir}
 
 cmd.install:
-    - extract --strip ${downloadUrl}/jdk8u462-b08_openj9-0.53.0/ibm-semeru-open-jdk_x64_windows_8u462b08_openj9-0.53.0.zip ${baseDir}
+    - extract --strip ${downloadUrl}/jdk8u472-b08_openj9-0.56.0/ibm-semeru-open-jdk_x64_windows_8u472b08_openj9-0.56.0.zip ${baseDir}
     - setEnv --permanent JAVA8_HOME ${javaHome}
     - addPath --permanent ${javaHome}/bin
 
