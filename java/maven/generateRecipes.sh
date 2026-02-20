@@ -29,12 +29,19 @@ generateMavenRecipes() {
 versions=$(curl -s https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/ \
     | grep -oP 'href="\K[\d.]+(?=/")' \
     | grep '^3\.' \
-    | sort
+    | grep -v '^3\.0' \
+    | sed 's/\.\([0-9]\)\./.0\1\./g' \
+    | sed 's/\.\([0-9]\)$/.0\1/g' \
+    | sed 's/\.\([0-9]\{2\}\)\./.0\1\./g' \
+    | sed 's/\.\([0-9]\{2\}\)$/.0\1/g' \
+    | sort \
+    | sed 's/\.0\+\([1-9]\+\)/.\1/g' \
+    | sed 's/\.0\+0/.0/g' \
 )
 
 # get the latest version for each major.minor and generate the recipe
 for version in $(echo "$versions" | sed 's/\([0-9]\+\.[0-9]\+\)\..*/\1/g' | sort -u) ; do
-    latest=$(echo "$versions" | grep "^$version\." | sort -r | head -n 1)
+    latest=$(echo "$versions" | grep "^$version\." | tail -n 1)
     generateMavenRecipes $latest
 done
 
