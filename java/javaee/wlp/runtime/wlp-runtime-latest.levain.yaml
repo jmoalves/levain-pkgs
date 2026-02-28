@@ -1,6 +1,6 @@
-version: 26.0.0.1
+version: 26.0.0.2
 
 levain.pkg.skipInstallDir: true
 
 dependencies:
-    - wlp-runtime-26.0.0.1
+    - wlp-runtime-26.0.0.2

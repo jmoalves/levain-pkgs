@@ -1,6 +1,6 @@
-version: 26.0.0.1
+version: 26.0.0.2
 
 levain.pkg.skipInstallDir: true
 
 dependencies:
-    - openliberty-runtime-26.0.0.1
+    - openliberty-runtime-26.0.0.2
