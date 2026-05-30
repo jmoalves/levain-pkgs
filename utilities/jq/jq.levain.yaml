@@ -1,8 +1,8 @@
-version: 1.8.1
+version: 
 
 dependencies:
 
-downloadUrl: https://github.com/stedolan/jq/releases/download/jq-1.8.1
+downloadUrl: https://github.com/stedolan/jq/releases/download/jq-
 
 cmd.install:
     - copy ${downloadUrl}/jq-win64.exe ${baseDir}/jq.exe
