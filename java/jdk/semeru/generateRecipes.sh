@@ -2,6 +2,10 @@
 
 scriptPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd && cd - >/dev/null 2>&1 )"
 
+debug=false
+echoErr() { printf "ERR: %s\n" "$*" >&2; }
+echoDebug() { $debug && printf "DEBUG: %s\n" "$*" >&2; }
+
 ####################################################
 ### Functions
 ####################################################
@@ -11,7 +15,14 @@ generateJdkRecipe() {
     local adjustedVersion=$2
     local zipPath=$3
 
-    mkdir -p $( dirname ${filename})
+    local jdkDir=$( dirname ${filename})
+
+    echoDebug "filename........: ${filename}"
+    echoDebug "adjustedVersion.: ${adjustedVersion}"
+    echoDebug "zipPath.........: ${zipPath}"
+    echoDebug "jdkDir..........: ${jdkDir}"
+
+    mkdir -p ${jdkDir}
     cat <<-EOF > ${filename}
 version: ${adjustedVersion}
 
@@ -58,16 +69,20 @@ javaGithub() {
     for url in $( \
         curl -kLs \
             -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/ibmruntimes/semeru${jdkMajor}${certifiedJDK}-binaries/releases \
+            "https://api.github.com/repos/ibmruntimes/semeru${jdkMajor}${certifiedJDK}-binaries/releases?per_page=100" \
         | jq -r '.[]|select(.prerelease == false)| .assets[].browser_download_url ' \
-        | grep "${grepExpression}"
+        | grep "${grepExpression}" \
+        | awk '{a[NR]=$0} END{for(i=NR;i>=1;i--) print a[i]}'
     ); do
-        # echo
-        # echo URL: ${url}
+        echoDebug "URL: ${url}"
+        releaseTag=$( echo ${url} | sed 's@^.*/download/\([^/]\+\)/.*$@\1@g' )
         if [ $jdkMajor = 8 ]; then
-            version='8.0.'$( echo ${url} | sed 's@^.*/download/jdk8u\([0-9]\+\).*.\.\([0-9]\+\)/.*$@\1.\2@g' )
+            version='8.0.'$( echo ${url} | sed 's@^.*/download/jdk8u\([0-9]\+\).*\.\.\([0-9]\+\)/.*$@\1.\2@g' )
         else
-            version=($( echo ${url} | sed 's@^.*/download/jdk-\([^%]\+\).*$@\1@g' ))
+            version=$( echo ${url} | sed -n 's@^.*/ibm-semeru-open-jdk_x64_windows_\([0-9]\+\(\.[0-9]\+\)\{0,3\}\)\(_.*\)\?\.zip$@\1@p' )
+            if [ "${version}" == "" ]; then
+                version=$( echo ${releaseTag} | sed 's@^jdk-\([^%/]\+\).*$@\1@g' )
+            fi
         fi
 
         my_arr=($( echo ${version} | tr "." "\n" ))
@@ -81,11 +96,11 @@ javaGithub() {
             adjustedVersion=$version
         fi
 
-        filename=${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-${adjustedVersion}.levain.yaml
+        filename=
+        local filename=${scriptPath}/jdk-${jdkMajor}/jdk-${jdkMajor}-ibm-${adjustedVersion}.levain.yaml
         if [ ! -e $filename ]; then
             echo === MISSING - JDK version - ${adjustedVersion} at ${filename}
-            zipPath=($(echo ${url} | sed 's@^.*/download/@@g'))
-            # echo ZIP: ${zipPath}
+            zipPath=$(echo ${url} | sed 's@^.*/download/@@g')
             generateJdkRecipe ${filename} ${adjustedVersion} ${zipPath}
         fi
     done
@@ -117,4 +132,4 @@ javaGithub -v 25 # LTS
 javaGithub -v 21 # LTS
 javaGithub -v 17 # LTS
 javaGithub -v 11 # LTS
-javaGithub -v 8  # LTS
+#javaGithub -v 8  # LTS
