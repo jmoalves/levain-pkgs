@@ -77,7 +77,13 @@ javaGithub() {
         echoDebug "URL: ${url}"
         releaseTag=$( echo ${url} | sed 's@^.*/download/\([^/]\+\)/.*$@\1@g' )
         if [ $jdkMajor = 8 ]; then
-            version='8.0.'$( echo ${url} | sed 's@^.*/download/jdk8u\([0-9]\+\).*\.\.\([0-9]\+\)/.*$@\1.\2@g' )
+            version=$( echo ${releaseTag} | sed -n 's@^jdk-\([0-9][0-9.]*\)$@\1@p' )
+            if [ "${version}" == "" ]; then
+                version=$( echo ${releaseTag} | sed -n 's@^jdk8u\([0-9]\+\)-b[0-9]\+\.\([0-9]\+\).*$@8.0.\1.\2@p' )
+            fi
+            if [ "${version}" == "" ]; then
+                version=$( echo ${releaseTag} | sed -n 's@^jdk8u\([0-9]\+\)-b[0-9]\+.*$@8.0.\1.0@p' )
+            fi
         else
             version=$( echo ${url} | sed -n 's@^.*/ibm-semeru-open-jdk_x64_windows_\([0-9]\+\(\.[0-9]\+\)\{0,3\}\)\(_.*\)\?\.zip$@\1@p' )
             if [ "${version}" == "" ]; then
@@ -132,4 +138,4 @@ javaGithub -v 25 # LTS
 javaGithub -v 21 # LTS
 javaGithub -v 17 # LTS
 javaGithub -v 11 # LTS
-#javaGithub -v 8  # LTS
+javaGithub -v 8  # LTS
