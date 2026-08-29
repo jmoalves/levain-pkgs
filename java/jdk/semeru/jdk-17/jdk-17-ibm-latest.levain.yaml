@@ -1,4 +1,4 @@
-version: 17.0.20.0
+version: 17.0.20.10
 
 dependencies:
 
@@ -6,7 +6,7 @@ downloadUrl: https://github.com/ibmruntimes/semeru17-binaries/releases/download
 javaHome: ${baseDir}
 
 cmd.install:
-    - extract --strip ${downloadUrl}/jdk-17.0.20.0/ibm-semeru-open-jdk_x64_windows_17.0.20.0.zip ${baseDir}
+    - extract --strip ${downloadUrl}/jdk-17.0.20.10/ibm-semeru-open-jdk_x64_windows_17.0.20.10.zip ${baseDir}
     - setEnv --permanent JAVA17_HOME ${javaHome}
     - addPath --permanent ${javaHome}/bin
 
