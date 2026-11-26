@@ -20,9 +20,9 @@ done
 
 ### Update latest
 latest=$( \
-    find -name 'openliberty-*.levain.yaml' \
+    find "${scriptPath}" -name 'openliberty-*.levain.yaml' \
         | grep -v latest \
-        | sort -r \
+        | sort -Vr \
         | head -n 1 \
         | sed 's/.*openliberty-runtime-\([0-9.]\+\).levain.yaml.*/\1/g'
 )

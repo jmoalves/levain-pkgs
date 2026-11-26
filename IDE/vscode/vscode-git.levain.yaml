@@ -1,0 +1,12 @@
+version: 1.0.0
+
+levain.pkg.skipInstallDir: true
+
+dependencies:
+    - vscode
+    - git
+
+cmd.install:
+    - mkdir ${APPDATA}/Code/User
+    - backupFile ${APPDATA}/Code/User/settings.json
+    - jsonSet ${APPDATA}/Code/User/settings.json [git.path] ${pkg.git.baseDir}/bin/git.exe

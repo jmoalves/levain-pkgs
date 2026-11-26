@@ -25,10 +25,18 @@ EOF
 }
 
 # Fetch Deno versions from GitHub releases
-version=$(curl -s https://api.github.com/repos/denoland/deno/releases \
+authArgs=()
+if [ -n "${GITHUB_TOKEN:-}" ]; then
+    authArgs=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
+fi
+version=$(curl -fsSL "${authArgs[@]}" https://api.github.com/repos/denoland/deno/releases \
     | grep -oP '"tag_name": "\Kv[\d.]+(?=")' \
     | sed 's/v//g' \
-    | sort -r \
+    | sort -Vr \
     | head -n 1
 )
-generateDenoRecipes $version
+if [ -z "${version}" ]; then
+    echo "ERROR: could not determine latest Deno version" >&2
+    exit 1
+fi
+generateDenoRecipes "$version"

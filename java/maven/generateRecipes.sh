@@ -46,9 +46,9 @@ for version in $(echo "$versions" | sed 's/\([0-9]\+\.[0-9]\+\)\..*/\1/g' | sort
 done
 
 ### Update latest
-latest=$(find -name 'maven-*.levain.yaml' \
+latest=$(find "${scriptPath}" -name 'maven-*.levain.yaml' \
         | grep -v latest \
-        | sort -r \
+        | sort -Vr \
         | head -n 1 \
         | sed 's/.*maven-\([0-9.]\+\).levain.yaml.*/\1/g'
 )

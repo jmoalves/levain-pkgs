@@ -1,5 +1,8 @@
 name: Generate recipes
 
+permissions:
+    contents: write
+
 on:
     workflow_dispatch:
 
@@ -20,14 +23,16 @@ jobs:
 
             - name: Generate recipes
               run: |
-                for file in $( find $GITHUB_WORKSPACE -name generateRecipes.sh ); do 
+                set -euo pipefail
+                while IFS= read -r file; do
                     echo
-                    echo ==========================
-                    echo === $( date '+%Y%m%d-%H%M%S' ) - $file
-                    bash $file
-                done
+                    echo "=========================="
+                    echo "=== $( date '+%Y%m%d-%H%M%S' ) - ${file}"
+                    bash "${file}"
+                done < <(find "${GITHUB_WORKSPACE}" -name generateRecipes.sh | sort)
 
               env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 GITHUB_WORKSPACE: ${{ github.workspace }}
 
             # # # FOR TEST

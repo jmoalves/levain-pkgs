@@ -1,0 +1,12 @@
+version: 2.4.0
+
+dependencies:
+
+downloadUrl: https://github.com/grafana/k6/releases/download/v${version}
+
+cmd.install:
+    - extract --strip ${downloadUrl}/k6-v2.4.0-windows-amd64.zip ${baseDir}
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}

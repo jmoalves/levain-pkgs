@@ -1,17 +1,22 @@
-version: 2.46.0
-versionTag: 2.46.0.windows.1
+version: 2.56.1
+versionTag: 2.56.1.windows.1
+expected.version: git version 2.56.1.windows.1
 
-downloadUrl:  https://github.com/git-for-windows/git/releases/download/
+downloadUrl: https://github.com/git-for-windows/git/releases/download
 
 gitHome: ${baseDir}
 
 cmd.install:
     # download and extract
-    - extract ${downloadUrl}/v${versionTag}/PortableGit-${version}-64-bit.7z.exe ${gitHome}
+    - extract ${downloadUrl}/v${versionTag}/PortableGit-2.56.1-64-bit.7z.exe ${gitHome}
 
     # make visible
     - setEnv --permanent GIT_HOME ${gitHome}
     - addPath --permanent ${gitHome}/bin
+
+    # verify extracted binary
+    - levainShell --saveVar=installed.version --stripCRLF=true ${gitHome}/bin/git.exe --version
+    - assertContains ${expected.version} ${installed.version}
 
 cmd.env:
     # make visible

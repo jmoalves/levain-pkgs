@@ -1,0 +1,12 @@
+version: 4.54.3
+
+dependencies:
+
+downloadUrl: https://github.com/mikefarah/yq/releases/download/v${version}
+
+cmd.install:
+    - copy ${downloadUrl}/yq_windows_amd64.exe ${baseDir}/yq.exe
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}
