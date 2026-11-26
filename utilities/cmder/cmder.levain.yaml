@@ -1,0 +1,13 @@
+version: 1.3.26
+
+dependencies:
+
+downloadUrl: https://github.com/cmderdev/cmder/releases/download
+
+cmd.install:
+    - extract ${downloadUrl}/v${version}/cmder_mini.zip ${baseDir}
+    - addToStartMenu ${baseDir}/Cmder.exe
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}

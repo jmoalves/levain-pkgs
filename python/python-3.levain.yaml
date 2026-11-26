@@ -1,0 +1,12 @@
+version: 3.15.2
+
+dependencies:
+
+downloadUrl: https://www.python.org/ftp/python/${version}
+
+cmd.install:
+    - extract ${downloadUrl}/python-${version}-embed-amd64.zip ${baseDir}
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}

@@ -1,0 +1,12 @@
+version: 2.0.0
+
+dependencies:
+
+downloadUrl: https://github.com/sharkdp/hyperfine/releases/download/v${version}
+
+cmd.install:
+    - extract --strip ${downloadUrl}/hyperfine-v2.0.0-x86_64-pc-windows-msvc.zip ${baseDir}
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}

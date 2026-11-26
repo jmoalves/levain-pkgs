@@ -1,4 +1,4 @@
-version: 1.92.2
+version: 1.148.0
 
 dependencies:
 
@@ -6,6 +6,7 @@ downloadUrl: https://update.code.visualstudio.com/${version}/win32-x64-archive/s
 
 cmd.install:
     - extract --type zip ${downloadUrl} ${baseDir}
+    - addToStartMenu ${baseDir}/Code.exe
     - addPath --permanent ${baseDir}/bin
 
 cmd.env:

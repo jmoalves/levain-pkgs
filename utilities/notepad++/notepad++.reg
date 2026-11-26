@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\*\shell\EditWithNotepadPlusPlus]
+@="Edit with Notepad++"
+"Icon"="\"@@baseDir@@\\notepad++.exe\",0"
+
+[HKEY_CURRENT_USER\Software\Classes\*\shell\EditWithNotepadPlusPlus\command]
+@="\"@@baseDir@@\\notepad++.exe\" \"%1\""

@@ -1,0 +1,13 @@
+version: 26.2.5.2
+
+dependencies:
+
+downloadUrl: https://github.com/dbeaver/dbeaver/releases/download/${version}
+
+cmd.install:
+    - extract --strip ${downloadUrl}/dbeaver-ce-26.2.5.2-windows-x86_64.zip ${baseDir}
+    - addToStartMenu ${baseDir}/dbeaver.exe
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}

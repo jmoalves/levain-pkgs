@@ -1,0 +1,21 @@
+version: 8.9.9.1
+
+dependencies:
+
+downloadUrl: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download
+
+cmd.install:
+    - extract ${downloadUrl}/v${version}/npp.8.9.9.1.portable.x64.zip ${baseDir}
+    # Store user configuration in %APPDATA% instead of the installation folder
+    - levainShell if exist "${baseDir}\doLocalConf.xml" del /q "${baseDir}\doLocalConf.xml"
+
+    # Windows context menu (HKCU)
+    - template --replace=/@@baseDir@@/g --with=${baseDir} --doubleBackslash ${pkgDir}/notepad++.reg ${baseDir}/notepad++.reg
+    - levainShell reg import "${baseDir}\notepad++.reg"
+
+    # Start Menu & PATH
+    - addToStartMenu ${baseDir}/notepad++.exe
+    - addPath --permanent ${baseDir}
+
+cmd.env:
+    - addPath ${baseDir}
