@@ -7,4 +7,3 @@ dependencies:
 
 cmd.install:
     - contextMenu folders --id="levain-git-bash" --name="Git Bash Here" --cmd="\"${pkg.git.baseDir}\\git-bash.exe\" \"--cd=%1\""
-    - contextMenu background --id="levain-git-bash-bg" --name="Git Bash Here" --cmd="\"${pkg.git.baseDir}\\git-bash.exe\" \"--cd=%V\""
